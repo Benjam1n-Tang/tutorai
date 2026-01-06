@@ -115,15 +115,16 @@ export const getUserCompanions = async (userId: string) => {
 
 export const newCompanionPermissions = async () => {
   const { userId, has } = await auth();
+  console.log(userId)
   const supabase = createSupabaseClient();
 
   let limit = 0;
 
   if (has({ plan: "pro" })) {
     return true;
-  } else if (has({ feature: "3_companion_limit" })) {
+  } else if (has({ feature: "3_active_companions" })) {
     limit = 3;
-  } else if (has({ feature: "10_companion_limit" })) {
+  } else if (has({ feature: "10_active_companions" })) {
     limit = 10;
   }
 
